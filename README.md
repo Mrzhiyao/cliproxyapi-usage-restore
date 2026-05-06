@@ -20,8 +20,8 @@ curl -fsSL https://raw.githubusercontent.com/Mrzhiyao/cliproxyapi-usage-restore/
 Custom path or service name:
 
 ```bash
-APP_DIR=/home/admin/cliproxyapi SERVICE=proxy.service \
-curl -fsSL https://raw.githubusercontent.com/Mrzhiyao/cliproxyapi-usage-restore/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/Mrzhiyao/cliproxyapi-usage-restore/main/install.sh \
+  | APP_DIR=/home/admin/cliproxyapi SERVICE=proxy.service bash
 ```
 
 ## Usage Page

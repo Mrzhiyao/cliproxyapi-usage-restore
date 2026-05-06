@@ -1,0 +1,5 @@
+release-assets/
+cli-proxy-api-linux-amd64
+management.html
+*.tar.gz
+*.zip

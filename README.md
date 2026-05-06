@@ -38,7 +38,7 @@ The sidebar entry is `Usage / 使用统计`.
 
 - This restores the old in-memory usage aggregation. Usage data starts from process start unless you import a previous export.
 - Existing files are backed up before replacement.
-- The installer does not modify your `config.yaml`.
+- The installer sets `remote-management.disable-auto-update-panel: true` so the restored panel is not overwritten by upstream auto-update.
 - Make sure `usage-statistics-enabled: true` is enabled.
 
 ## Source

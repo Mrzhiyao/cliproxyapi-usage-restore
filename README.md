@@ -14,13 +14,13 @@ This package keeps the newer CLIProxyAPI `6.10.8` features, including GPT 5.5, a
 Run this on a server that already has CLIProxyAPI installed at `/home/admin/cliproxyapi` with service `proxy.service`:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/Mrzhiyao/cliproxyapi-usage-restore/main/install.sh | bash
+curl -fsSL https://github.com/Mrzhiyao/cliproxyapi-usage-restore/releases/latest/download/install.sh | bash
 ```
 
 Custom path or service name:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/Mrzhiyao/cliproxyapi-usage-restore/main/install.sh \
+curl -fsSL https://github.com/Mrzhiyao/cliproxyapi-usage-restore/releases/latest/download/install.sh \
   | APP_DIR=/home/admin/cliproxyapi SERVICE=proxy.service bash
 ```
 

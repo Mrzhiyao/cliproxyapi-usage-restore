@@ -7,6 +7,7 @@ This package keeps the newer CLIProxyAPI `6.10.8` features, including GPT 5.5, a
 - `cli-proxy-api-linux-amd64`: patched CLIProxyAPI `6.10.8-usage`
 - `management.html`: current CPAMC frontend with the old Usage page restored
 - `/v0/management/usage`, `/usage/export`, `/usage/import`: restored backend endpoints
+- Management panel API calls (`/v0/management/api-call`) are counted when the upstream response includes usage/token fields
 - `install.sh`: one-command installer for existing Linux deployments
 
 ## Quick Install

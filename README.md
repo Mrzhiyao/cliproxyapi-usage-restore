@@ -8,6 +8,7 @@ This package keeps the newer CLIProxyAPI `6.10.8` features, including GPT 5.5, a
 - `management.html`: current CPAMC frontend with the old Usage page restored
 - `/v0/management/usage`, `/usage/export`, `/usage/import`: restored backend endpoints
 - Management panel API calls (`/v0/management/api-call`) are counted when the upstream response includes usage/token fields
+- Cursor BYOK compatibility for GPT-5 family requests where a Responses API payload is sent to `/v1/chat/completions`
 - `install.sh`: one-command installer for existing Linux deployments
 
 ## Quick Install
@@ -33,7 +34,7 @@ After installation, open:
 http://YOUR_SERVER:8318/management.html#/usage
 ```
 
-The sidebar entry is `Usage / 使用统计`.
+The sidebar entry is `Usage`.
 
 ## Notes
 

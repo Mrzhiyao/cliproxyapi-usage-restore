@@ -2,10 +2,11 @@
 set -euo pipefail
 
 REPO="${REPO:-Mrzhiyao/cliproxyapi-usage-restore}"
-TAG="${TAG:-v6.10.8-usage-restore.9}"
+TAG="${TAG:-v6.10.8-usage-restore.10}"
 APP_DIR="${APP_DIR:-/home/admin/cliproxyapi}"
 SERVICE="${SERVICE:-proxy.service}"
 CONFIG_FILE="${CONFIG_FILE:-${APP_DIR}/config.yaml}"
+BIN_PATH="${BIN_PATH:-}"
 
 BASE_URL="https://github.com/${REPO}/releases/download/${TAG}"
 TMP_DIR="$(mktemp -d)"
@@ -34,6 +35,17 @@ if [ ! -d "${APP_DIR}/static" ]; then
   mkdir -p "${APP_DIR}/static"
 fi
 
+if [ -z "${BIN_PATH}" ] && command -v systemctl >/dev/null 2>&1; then
+  current_bin="$(systemctl show -p ExecStart --value "${SERVICE}" 2>/dev/null | sed -n 's/.*path=\([^ ;]*\).*/\1/p' | head -n 1 || true)"
+  if [ -n "${current_bin}" ]; then
+    case "${current_bin}" in
+      "${APP_DIR}"/*) BIN_PATH="${current_bin}" ;;
+    esac
+  fi
+fi
+BIN_PATH="${BIN_PATH:-${APP_DIR}/cli-proxy-api}"
+mkdir -p "$(dirname "${BIN_PATH}")"
+
 echo "Downloading CLIProxyAPI usage restore assets from ${REPO} ${TAG}..."
 curl -fsSL "${BASE_URL}/cli-proxy-api-linux-amd64" -o "${TMP_DIR}/cli-proxy-api-linux-amd64"
 curl -fsSL "${BASE_URL}/management.html" -o "${TMP_DIR}/management.html"
@@ -45,15 +57,16 @@ curl -fsSL "${BASE_URL}/checksums.sha256" -o "${TMP_DIR}/checksums.sha256"
 )
 
 STAMP="$(date -u +%Y%m%d%H%M%S)"
-if [ -f "${APP_DIR}/cli-proxy-api" ]; then
-  cp "${APP_DIR}/cli-proxy-api" "${APP_DIR}/cli-proxy-api.bak.before-usage-restore.${STAMP}"
+if [ -f "${BIN_PATH}" ]; then
+  cp "${BIN_PATH}" "${BIN_PATH}.bak.before-usage-restore.${STAMP}"
 fi
 if [ -f "${APP_DIR}/static/management.html" ]; then
   cp "${APP_DIR}/static/management.html" "${APP_DIR}/static/management.html.bak.before-usage-restore.${STAMP}"
 fi
 
-install -m 0755 "${TMP_DIR}/cli-proxy-api-linux-amd64" "${APP_DIR}/cli-proxy-api"
+install -m 0755 "${TMP_DIR}/cli-proxy-api-linux-amd64" "${BIN_PATH}"
 install -m 0644 "${TMP_DIR}/management.html" "${APP_DIR}/static/management.html"
+echo "Installed binary to ${BIN_PATH}"
 
 if [ -f "${CONFIG_FILE}" ]; then
   cp "${CONFIG_FILE}" "${CONFIG_FILE}.bak.before-usage-restore.${STAMP}"

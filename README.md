@@ -30,6 +30,13 @@ curl -fsSL https://github.com/Mrzhiyao/cliproxyapi-usage-restore/releases/latest
   | APP_DIR=/home/admin/cliproxyapi SERVICE=proxy.service bash
 ```
 
+If your service runs a versioned binary under the app directory, for example `/opt/cliproxyapi/bin/cliproxyapi-v...`, the installer now detects the current systemd `ExecStart` path and overwrites that binary. You can also force the binary path:
+
+```bash
+curl -fsSL https://github.com/Mrzhiyao/cliproxyapi-usage-restore/releases/latest/download/install.sh \
+  | APP_DIR=/opt/cliproxyapi SERVICE=cliproxyapi.service BIN_PATH=/opt/cliproxyapi/bin/cliproxyapi-v6.10.8-usage-restore.8 bash
+```
+
 ## Usage Page
 
 After installation, open:
@@ -49,6 +56,12 @@ The sidebar entry is `Usage`.
 - Make sure `usage-statistics-enabled: true` is enabled.
 
 ## Changelog
+
+### v6.10.8-usage-restore.10
+
+- Updated the installer to detect and replace the binary path currently used by systemd when it lives under `APP_DIR`.
+- This helps custom deployments where the service runs a versioned binary such as `/opt/cliproxyapi/bin/cliproxyapi-v...`.
+- Keeps the v6.10.8-usage-restore.9 Cursor `metadata` compatibility fix.
 
 ### v6.10.8-usage-restore.9
 

@@ -44,6 +44,45 @@ The sidebar entry is `Usage`.
 - The installer sets `remote-management.disable-auto-update-panel: true` so the restored panel is not overwritten by upstream auto-update.
 - Make sure `usage-statistics-enabled: true` is enabled.
 
+## Changelog
+
+### v6.10.8-usage-restore.7
+
+- Added Cursor old-chat compatibility for long tool `call_id` values in Chat Completions histories.
+- Keeps the Usage page restore, GPT-5.5 aliases, Cursor BYOK shim, and API-call usage counting.
+
+### v6.10.8-usage-restore.6
+
+- Expanded old-chat compatibility so overlong Responses API `call_id` values are shortened even in large restored histories with `previous_response_id`.
+- Keeps the Usage page restore and Cursor BYOK GPT-5 shims.
+
+### v6.10.8-usage-restore.5
+
+- Added Cursor old-chat compatibility for overlong Responses API tool `call_id` values.
+- Keeps the restored CPAMC Usage page, Cursor BYOK GPT-5 shim, and API-call usage counting.
+
+### v6.10.8-usage-restore.4
+
+- Added a Cursor BYOK compatibility shim for GPT-5 family requests where a Responses API payload is sent to `/v1/chat/completions`.
+- Keeps the restored CPAMC Usage page and API-call usage counting.
+
+### v6.10.8-usage-restore.3
+
+- Counted management panel API calls through `/v0/management/api-call` when upstream responses include usage/token fields.
+- Kept the restored Usage / 使用统计 frontend and backend endpoints.
+- Installer still disables CPAMC panel auto-update to prevent the restored page being overwritten.
+
+### v6.10.8-usage-restore.2
+
+- Kept the same CLIProxyAPI `6.10.8` usage restore build.
+- Updated installer to set `remote-management.disable-auto-update-panel: true`.
+
+### v6.10.8-usage-restore.1
+
+- Restored the old CPAMC Usage Statistics page.
+- Restored `/v0/management/usage` endpoints on top of CLIProxyAPI `6.10.8`.
+- Kept GPT-5.5 support from the newer backend.
+
 ## Source
 
 This is a compatibility build made from:

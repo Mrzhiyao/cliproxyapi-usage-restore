@@ -8,6 +8,8 @@ This package keeps the newer CLIProxyAPI `6.10.8` features, including GPT 5.5, a
 - `management.html`: current CPAMC frontend with the old Usage page restored
 - `/v0/management/usage`, `/usage/export`, `/usage/import`: restored backend endpoints
 - Management panel API calls (`/v0/management/api-call`) are counted when the upstream response includes usage/token fields
+- Root OpenAI-compatible aliases (`/models`, `/chat/completions`, `/responses`) for clients that omit `/v1` in their base URL
+- Installer adds `cpa55-*` GPT-5.5 aliases and reasoning overrides to `config.yaml`
 - Cursor BYOK compatibility for GPT-5 family requests where a Responses API payload is sent to `/v1/chat/completions`
 - Cursor old-chat compatibility for overlong tool `call_id` values in both Responses payloads and Chat Completions histories
 - `install.sh`: one-command installer for existing Linux deployments
@@ -42,9 +44,16 @@ The sidebar entry is `Usage`.
 - This restores the old in-memory usage aggregation. Usage data starts from process start unless you import a previous export.
 - Existing files are backed up before replacement.
 - The installer sets `remote-management.disable-auto-update-panel: true` so the restored panel is not overwritten by upstream auto-update.
+- The installer does not copy your private OAuth/auth files or API keys from another server. Configure `api-keys` and OAuth login/auth files on each server, or copy them yourself.
 - Make sure `usage-statistics-enabled: true` is enabled.
 
 ## Changelog
+
+### v6.10.8-usage-restore.8
+
+- Added root OpenAI-compatible route aliases for `/models`, `/chat/completions`, `/completions`, and `/responses`.
+- Updated installer to add `cpa55-*` GPT-5.5 aliases and reasoning overrides to `config.yaml`.
+- Clarified that OAuth/auth files and API keys are per-server credentials and are not bundled in the release.
 
 ### v6.10.8-usage-restore.7
 

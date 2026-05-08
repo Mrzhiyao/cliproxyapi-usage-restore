@@ -12,6 +12,7 @@ This package keeps the newer CLIProxyAPI `6.10.8` features, including GPT 5.5, a
 - Installer adds `cpa55-*` GPT-5.5 aliases and reasoning overrides to `config.yaml`
 - Cursor BYOK compatibility for GPT-5 family requests where a Responses API payload is sent to `/v1/chat/completions`
 - Cursor old-chat compatibility for overlong tool `call_id` values in both Responses payloads and Chat Completions histories
+- Cursor compatibility for clients that send OpenAI `metadata` to the Codex/OAuth upstream
 - `install.sh`: one-command installer for existing Linux deployments
 
 ## Quick Install
@@ -48,6 +49,11 @@ The sidebar entry is `Usage`.
 - Make sure `usage-statistics-enabled: true` is enabled.
 
 ## Changelog
+
+### v6.10.8-usage-restore.9
+
+- Stripped unsupported OpenAI `metadata` before forwarding GPT-5.5/Codex OAuth requests upstream.
+- Keeps the root `/models` aliases, `cpa55-*` installer aliases, usage page restore, and long `call_id` compatibility fixes.
 
 ### v6.10.8-usage-restore.8
 

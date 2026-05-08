@@ -2,7 +2,7 @@
 set -euo pipefail
 
 REPO="${REPO:-Mrzhiyao/cliproxyapi-usage-restore}"
-TAG="${TAG:-v6.10.8-usage-restore.8}"
+TAG="${TAG:-v6.10.8-usage-restore.9}"
 APP_DIR="${APP_DIR:-/home/admin/cliproxyapi}"
 SERVICE="${SERVICE:-proxy.service}"
 CONFIG_FILE="${CONFIG_FILE:-${APP_DIR}/config.yaml}"
